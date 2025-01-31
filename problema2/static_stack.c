@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_SIZE 50
+#define MAX_SIZE 10
 
 /*
 Item structure, as per the lab instructions
@@ -56,6 +56,8 @@ int get_random_num(int min, int max);
 uint8_t pin1 = 0;
 size_t counter = 0;
 
+
+// MAIN FUNCTION
 int main (void) {
     Stack my_stack;             // Declare a stack
     stack_init(&my_stack);      // Initialize it as empty
@@ -150,6 +152,7 @@ void populate_stack(Stack *stack) {
         return;
     }
 
+    srand(time(NULL)); // Seed the random generator
     for (int i = 0; i < MAX_SIZE; i++) {
         Item next_item = item_init();   // Create an item with random pin name
         stack_add(stack, next_item);    // Add the item to the stack
@@ -167,6 +170,7 @@ Item item_init(void) {
 
 // Generate a random number between min and max
 int get_random_num(int min, int max) {
+    //srand(time(NULL));
     int random_num = rand() % (max - min + 1) + min;
     return random_num;
 }
